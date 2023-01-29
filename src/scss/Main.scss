@@ -1,0 +1,52 @@
+.main{
+    margin-top: 10vh;
+ &-stepper{
+    margin: auto;
+    width: 50vw;
+ }
+.option{
+    margin: 20vh;
+
+    .option-list{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    &-item{
+        padding: 10px;
+        border: 2px solid black;
+        border-radius: 6px;
+        border-style: dashed;
+        cursor: pointer;
+        display: flex;
+        width: 17rem;
+        justify-content: center;
+
+        div{
+            text-align: left;
+            margin-left: 0.5rem;
+        }
+        img{
+            height: 4rem;
+        }
+    }
+}
+}
+.homeBtn{
+    margin-top: 4rem;
+    float: right;
+    font-size: 1.3rem;
+    filter: invert(100%);
+    border: none;
+    border-radius: 4px;
+    width: 6rem;
+    background-color: #c0a719;
+    color: #000000;
+    img{
+        height: 1.8rem;
+    }
+}
+.homeBtn:hover{
+    background-color: #dabe23;
+}
+}
