@@ -1,8 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 import add from '../icons/add.png'
 import sub from '../icons/minus.png'
+
+
 const Variant = () => {
+  
+  const [inputField,setInputField]= useState([{inputfield:""} ]);
+
+  const handleAdd =()=> {
+    setInputField([...inputField, {service:""}])
+  }
+
+  const handleSub = (index)=>{
+    setInputField([...inputField.slice(0,index),...inputField.slice(index+1)])
+
+
+  }
   return (
     <div className='container row'>
     <div class="col-md-6 position-relative">
@@ -25,10 +39,12 @@ const Variant = () => {
         <div className='col-md-2'>Price Exc. Tax</div>
         <div className='col-md-2'>Price Inc. Tax</div>
         <div className='col-md-2'>Product Image</div>
-        <div className='col-md-2'><img src={add} style={{height:"3rem",marginLeft:"5rem"}} /></div>
+        <div className='col-md-2'><img onClick={handleAdd}  src={add} style={{height:"3rem",marginLeft:"5rem"}} /></div>
         </div>
 
-        <div className='row g-2'>
+      {inputField.map((field,index)=>(
+
+        <div key={index} className='row g-2'>
         <div className='col-md-2'>
             <input type='text' placeholder='Name' />
         </div>
@@ -64,11 +80,14 @@ const Variant = () => {
           Please select image.
         </div>
         </div>
-        <div className='col-md-2'>
-            <img src={sub} style={{height:"3rem"}} />
-        </div>
+        {index > 0 &&
+          <div className='col-md-2'>
+          <img onClick={()=>handleSub(index)} src={sub} style={{height:"3rem"}} />
+          </div>
+        }
         
     </div>
+      ))}
 </div>
   )
 }
