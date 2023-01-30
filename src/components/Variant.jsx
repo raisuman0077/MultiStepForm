@@ -5,7 +5,7 @@ import sub from '../icons/minus.png'
 
 
 const Variant = () => {
-  
+
   const [inputField,setInputField]= useState([{inputfield:""} ]);
 
   const handleAdd =()=> {

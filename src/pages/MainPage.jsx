@@ -10,6 +10,25 @@ import { Link } from 'react-router-dom';
 const steps =['Choose The Variant', 'Item Details','Variant Details'];
 
 const MainPage = () => {
+
+    var activeclass = document.querySelectorAll('.option-list-item');
+
+   activeclass.forEach(active=>{
+    active.addEventListener("click", ()=>{
+        resetActive();
+        active.classList.add('active')
+
+    } )
+   })
+
+   function resetActive(){
+    activeclass.forEach(active=>{
+        active.classList.remove('active')
+    })
+   }
+
+
+
     const [type, setType] = useState('');
 
   return (
@@ -33,7 +52,7 @@ const MainPage = () => {
         <h1>Choose Item Type</h1>
         <h6>Choose the type of item you want to create.</h6>
         <ul className='option-list'>
-            <li onClick={()=>setType('')} className='option-list-item'>  
+            <li onClick={()=>setType('')}   className='option-list-item active'>  
                 <img src={singleIcon} />
                 <div >
                     <h4>Single</h4>
