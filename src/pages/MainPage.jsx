@@ -12,7 +12,7 @@ const steps =['Choose The Variant', 'Item Details','Variant Details'];
 const MainPage = () => {
 
 
-    const [type, setType] = useState('');
+   
     const [selectSingle,setSelectSingle]= useState(true);
     const [selectVariant, setSelectVariant] = useState(false);
 
@@ -29,15 +29,15 @@ const MainPage = () => {
 
   return (
     <div className='container main'>
-    {type==='variable'? <Stepper className='main-stepper' activeStep={0}>
-    {steps.map((step)=>(
+    {selectSingle ? <Stepper className='main-stepper' activeStep={0}>
+    {steps.slice(0,2).map((step)=>(
 
         <Step key={step}>
             <StepLabel>{step}</StepLabel>
         </Step>
         ))}
     </Stepper>:<Stepper className='main-stepper' activeStep={0}>
-    {steps.slice(0,2).map((step)=>(
+    {steps.map((step)=>(
 
         <Step key={step}>
             <StepLabel>{step}</StepLabel>
