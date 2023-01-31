@@ -11,25 +11,21 @@ const steps =['Choose The Variant', 'Item Details','Variant Details'];
 
 const MainPage = () => {
 
-    var activeclass = document.querySelectorAll('.option-list-item');
-
-   activeclass.forEach(active=>{
-    active.addEventListener("click", ()=>{
-        resetActive();
-        active.classList.add('active')
-
-    } )
-   })
-
-   function resetActive(){
-    activeclass.forEach(active=>{
-        active.classList.remove('active')
-    })
-   }
-
-
 
     const [type, setType] = useState('');
+    const [selectSingle,setSelectSingle]= useState(true);
+    const [selectVariant, setSelectVariant] = useState(false);
+
+    const handleSelectSingle =()=>{
+        setSelectVariant(false)
+        setSelectSingle(true)
+    }
+    const handleSelectVariant =()=>{
+        setSelectVariant(true)
+        setSelectSingle(false)
+    }
+
+
 
   return (
     <div className='container main'>
@@ -52,24 +48,38 @@ const MainPage = () => {
         <h1>Choose Item Type</h1>
         <h6>Choose the type of item you want to create.</h6>
         <ul className='option-list'>
-            <li onClick={()=>setType('')}   className='option-list-item active'>  
+            {selectSingle ? <li onClick={handleSelectSingle}   className='option-list-item active'>  
+            <img src={singleIcon} />
+            <div >
+                <h4>Single</h4>
+                <p>Add an item</p>
+            </div>
+        </li>:
+        <li onClick={handleSelectSingle}     className='option-list-item'>  
                 <img src={singleIcon} />
                 <div >
                     <h4>Single</h4>
                     <p>Add an item</p>
                 </div>
-            </li>
-            <li onClick={()=>setType('variable')} className='option-list-item'>
+            </li>}
+            {selectVariant ? <li onClick={handleSelectVariant} className='option-list-item active'>
+            <img src={variableIcon} />
+            <div>
+             <h4>Variable</h4>
+             <p>Add an item with variant</p>
+            </div>
+        </li>:
+        <li onClick={handleSelectVariant} className='option-list-item'>
                 <img src={variableIcon} />
                 <div>
                  <h4>Variable</h4>
                  <p>Add an item with variant</p>
                 </div>
-            </li>
+            </li>}
             
         </ul>
-        {type==='variable' ? <Link to={'/variant'}><button className='homeBtn'>Next <img src={rightArrow} /></button></Link>
-            : <Link to={'/single'}><button className='homeBtn'>Next <img src={rightArrow} /></button></Link>}
+        {selectSingle ? <Link to={'/single'}><button className='homeBtn'>Next <img src={rightArrow} /></button></Link>
+            : <Link to={'/variant'}><button className='homeBtn'>Next <img src={rightArrow} /></button></Link>}
     </Typography>
     </div>
   )
